@@ -6,6 +6,14 @@ describe 'pam STIG enforcement' do
 
   let(:manifest) {
     <<-EOS
+    
+      $loaded_maps = compliance_markup::loaded_maps()
+      $telemetry = compliance_markup::telemetry("pam::homedir_umask")
+      $full_map = lookup("compliance_markup::debug::dump", { "default_value" => {}})
+
+      notice("compliance_engine loaded_maps => ${loaded_maps}")
+      notice("compliance_engine telemetry => ${telemetry}")
+      notice("compliance_engine dump => ${full_map}")
       include 'pam'
     EOS
   }
