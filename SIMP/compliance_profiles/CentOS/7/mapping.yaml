@@ -2,412 +2,232 @@
 version: 2.0.0
 checks:
   "puppet.forge.simp.pam.cracklib_dcredit":
-    disa_stig:
-      RHEL-07-010110: true
-      SRG-OS-000071-GPOS-00039: true
-      CCI-000194: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_dcredit"
-      value: -1,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: -1
   "puppet.forge.simp.pam.cracklib_lcredit":
-    disa_stig:
-      RHEL-07-010100: true
-      SRG-OS-000070-GPOS-00038: true
-      CCI-000193: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_lcredit"
-      value: -1,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: -1
   "puppet.forge.simp.pam.cracklib_ocredit":
-    disa_stig:
-      RHEL-07-010120: true
-      SRG-OS-000266-GPOS-00101: true
-      CCI-001619: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_ocredit"
-      value: -1,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: -1
   "puppet.forge.simp.pam.cracklib_ucredit":
-    disa_stig:
-      RHEL-07-010370: true
-      SRG-OS-000069-GPOS-00128: true
-      CCI-002238: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_ucredit"
-      value: -1,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: -1
   "puppet.forge.simp.pam.cracklib_difok":
-    disa_stig:
-      RHEL-07-010130: true
-      SRG-OS-000072-GPOS-00040: true
-      CCI-000194: true
-      xccdf_org:ssgproject:content_rule_accounts_password_pam_difok: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_difok"
-      value: 8,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 8
   "puppet.forge.simp.pam.cracklib_enforce_for_root":
-    nist_800_53:
-      IA-5: true
+    controls:
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_enforce_for_root"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.gecoscheck":
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::gecoscheck"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.cracklib_reject_username":
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_reject_username"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.cracklib_maxclassrepeat":
-    disa_stig:
-      RHEL-07-010190: true
-      SRG-OS-000072-GPOS-00040: true
-      CCI-000195: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_maxclassrepeat"
-      value: 4,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 4
   "puppet.forge.simp.pam.cracklib_maxrepeat":
-    disa_stig:
-      RHEL-07-010180: true
-      SRG-OS-000072-GPOS-00040: true
-      CCI-000195: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_maxrepeat"
-      value: 3,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 3
   "puppet.forge.simp.pam.cracklib_maxsequence":
-    disa_stig:
-      CCI-000195: true
-    nist_800_53:
-      IA-5(1)(a): true
-    type: puppet-class-parameter
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     settings:
       parameter: "pam::cracklib_maxsequence"
-      value: 4,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 4
   "puppet.forge.simp.pam.cracklib_minclass":
-    disa_stig:
-      RHEL-07-010140: true
-      SRG-OS-000072-GPOS-00040: true
-      CCI-000195: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_minclass"
-      value: 4,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 4
   "puppet.forge.simp.pam.cracklib_minlen":
-    disa_stig:
-      RHEL-07-010250: true
-      SRG-OS-000078-GPOS-00046: true
-      CCI-001619: true
-    nist_800_53:
-      IA-5(1)(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_minlen"
-      value: 15,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 15
   "puppet.forge.simp.pam.cracklib_retry":
-    disa_stig:
-      RHEL-07-010410: true
-      SRG-OS-000480-GPOS-00225: true
-      CCI-000366: true
-      xccdf_org:ssgproject:content_rule_accounts_password_pam_retry: true
-    nist_800_53:
-      AC-7(a): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::cracklib_retry"
-      value: 3,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 3
   "puppet.forge.simp.pam.deny":
-    disa_stig:
-      RHEL-07-010370: true
-      SRG-OS-000329-GPOS-00128: true
-      CCI-002238: true
-    nist_800_53:
-      IA-1: true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::deny"
-      value: 3,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 3
   "puppet.forge.simp.pam.deny_if_unknown":
-    nist_800_53:
-      IA-1: true
+    controls:
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::deny_if_unknown"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.display_account_lock":
-    nist_800_53:
-      AC-7: true
+    controls:
+      nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::display_account_lock"
-      value: false,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: false
   "puppet.forge.simp.pam.fail_interval":
-    disa_stig:
-      RHEL-07-010370: true
-      SRG-OS-000329-GPOS-00128: true
-      SRG-OS-000021-GPOS-00005: true
-      CCI-002238: true
-    nist_800_53:
-      AC-7(b): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::deny"
-      value: 900,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 900
   "puppet.forge.simp.pam.homedir_umask":
-    disa_stig:
-      RHEL-07-020230: true
-      SRG-OS-000480-GPOS-00228: true
-      CCI-000366: true
-    nist_800_53:
-      AC-2: true
-      AC-2(4): true
-      AC-6: true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:AC-2: true
+      nist_800_53:rev4:AC-6: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::homedir_umask"
-      value: 0077,
-      validation:
-        type: puppet_data_type
-        check: Simplib::Umask
-
+      value: '0077'
   "puppet.forge.simp.pam.preserve_ac":
-    nist_800_53:
-      IA-1: true
+    controls:
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::preserve_ac"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.remember":
-    disa_stig:
-      RHEL-07-010240: true
-      SRG-OS-000077-GPOS-00045: true
-      CCI-000200: true
-    nist_800_53:
-      IA-5(1)(e): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::remember"
-      value: 24,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 24
   "puppet.forge.simp.pam.root_unlock_time":
-    nist_800_53:
-      AC-7(b): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::root_unlock_time"
-      value: 60,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 60
   "puppet.forge.simp.pam.rounds":
-    nist_800_53:
-      IA-5(c): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-5: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::rounds"
-      value: 10000,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 10000
   "puppet.forge.simp.pam.even_deny_root":
-    disa_stig:
-      RHEL-07-010330: true
-      SRG-OS-000329-GPOS-00128: true
-      SRG-OS-000021-GPOS-00005: true
-      CCI-002238: true
+    controls:
+      disa_stig: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::even_deny_root"
-      value: true,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: true
   "puppet.forge.simp.pam.hash_algorithm":
-    disa_stig:
-      RHEL-07-010200: true
-      SRG-OS-000073-GPOS-00041: true
-      CCI-000196: true
+    controls:
+      disa_stig: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::hash_algorithm"
-      value: "sha512",
-      validation:
-        type: puppet_data_type
-        check: Enum["sha512"]
-
+      value: "sha512"
   "puppet.forge.simp.pam.uid":
-    disa_stig:
-      RHEL-07-010000: true
-      SRG-OS-000001-GPOS-00001: true
-      CCI-000015: true
-    nist_800_53:
-      IA-1: true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::uid"
-      value: 500,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 500
   "puppet.forge.simp.pam.unlock_time":
-    disa_stig:
-      RHEL-07-010320: true
-      SRG-OS-000329-GPOS-00128: true
-      CCI-002238: true
-      xccdf_org:ssgproject:content_rule_accounts_passwords_pam_faillock_unlock_time: true
-    nist_800_53:
-      AC-7(b): true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::unlock_time"
-      value: 604800,
-      validation:
-        type: puppet_data_type
-        check: Integer
-
+      value: 604800
   "puppet.forge.simp.pam.use_netgroups":
-    disa_stig:
-      RHEL-07-010000: true
-      SRG-OS-000001-GPOS-00001: true
-      CCI-000015: true
-    nist_800_53:
-      IA-1: true
+    controls:
+      disa_stig: true
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::use_netgroups"
-      value: false,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: false
   "puppet.forge.simp.pam.wheel::root_only":
-    nist_800_53:
-      IA-1: true
+    controls:
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::wheel::root_only"
-      value: false,
-      validation:
-        type: puppet_data_type
-        check: Boolean
-
+      value: false
   "puppet.forge.simp.pam.wheel::wheel_group":
-    nist_800_53:
-      IA-1: true
+    controls:
+      nist_800_53:rev4:IA-1: true
     type: puppet-class-parameter
     settings:
       parameter: "pam::wheel::wheel_group"
-      value: wheel,
-      validation:
-        type: puppet_data_type
-        check: String[1]
+      value: wheel
