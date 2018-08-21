@@ -14,7 +14,11 @@ describe 'pam STIG enforcement' do
       notice("compliance_engine loaded_maps => ${loaded_maps}")
       notice("compliance_engine telemetry => ${telemetry}")
       notice("compliance_engine dump => ${full_map}")
+
       include 'pam'
+
+      $compliance_profile = 'disa_stig'
+      include 'compliance_markup'
     EOS
   }
 
@@ -26,15 +30,48 @@ compliance_markup::enforcement:
   }
 
   hosts.each do |host|
+    shared_examples 'a valid report' do
+      before(:all) do
+        @compliance_data = {
+          :report => {}
+        }
+      end
+
+      let(:fqdn) { fact_on(host, 'fqdn') }
+
+      it 'should have a report' do
+        tmpdir = Dir.mktmpdir
+        begin
+          Dir.chdir(tmpdir) do
+            scp_from(host, "/opt/puppetlabs/puppet/cache/simp/compliance_reports/#{fqdn}/compliance_report.json", '.')
+
+            expect {
+              @compliance_data[:report] = JSON.load(File.read('compliance_report.json'))
+            }.to_not raise_error
+          end
+        ensure
+          FileUtils.remove_entry_secure tmpdir
+        end
+      end
+
+      it 'should have host metadata' do
+        expect(@compliance_data[:report]['fqdn']).to eq(fqdn)
+      end
+
+      it 'should have a compliance profile report' do
+        expect(@compliance_data[:report]['compliance_profiles']).to_not be_empty
+      end
+    end
+
     context 'when enforcing the STIG' do
       let(:hiera_yaml) { <<-EOM
 ---
 version: 5
 hierarchy:
-  - name: Common
-    path: default.yaml
   - name: Compliance
     lookup_key: compliance_markup::enforcement
+  - name: Common
+    path: default.yaml
 defaults:
   data_hash: yaml_data
   datadir: "#{hiera_datadir(host)}"
@@ -52,6 +89,8 @@ defaults:
       it 'should be idempotent' do
         apply_manifest_on(host, manifest, :catch_changes => true)
       end
+
+      it_behaves_like 'a valid report'
     end
   end
 end
