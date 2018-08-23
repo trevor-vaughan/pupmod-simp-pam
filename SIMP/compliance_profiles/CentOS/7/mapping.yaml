@@ -137,7 +137,7 @@ checks:
       nist_800_53:rev4:AC-7: true
     type: puppet-class-parameter
     settings:
-      parameter: "pam::deny"
+      parameter: "pam::fail_interval"
       value: 900
   "puppet.forge.simp.pam.homedir_umask":
     controls:
