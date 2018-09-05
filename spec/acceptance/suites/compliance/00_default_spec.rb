@@ -6,7 +6,6 @@ describe 'pam STIG enforcement' do
 
   let(:manifest) {
     <<-EOS
-    
       $loaded_maps = compliance_markup::loaded_maps()
       $telemetry = compliance_markup::telemetry("pam::homedir_umask")
       $full_map = lookup("compliance_markup::debug::dump", { "default_value" => {}})
@@ -60,6 +59,9 @@ compliance_markup::enforcement:
 
       it 'should have a compliance profile report' do
         expect(@compliance_data[:report]['compliance_profiles']).to_not be_empty
+        expect(@compliance_data[:report]['compliance_profiles']['disa_stig']).to_not be_empty
+        expect(@compliance_data[:report]['compliance_profiles']['disa_stig']['summary']).to_not be_empty
+        expect(@compliance_data[:report]['compliance_profiles']['disa_stig']['summary']['percent_compliant']).to be > 80
       end
     end
 
@@ -77,6 +79,15 @@ defaults:
   datadir: "#{hiera_datadir(host)}"
   EOM
       }
+
+      # This specifically tests that the new CE 2.0 allows us to generate the server-side reports
+      #
+      # The enforcement part is handled by the InSpec tests but also requires
+      # this to ensure that we're using not using the legacy material.
+      it 'should remove the legacy compliance maps' do
+        create_remote_file(host, '/tmp/empty.json', "{}\n")
+        on(host, %(find /etc/puppetlabs/code/environments/production/modules/compliance_markup/data -name "*.json" -exec cp /tmp/empty.json {} \\;))
+      end
 
       # Using puppet_apply as a helper
       it 'should work with no errors' do
