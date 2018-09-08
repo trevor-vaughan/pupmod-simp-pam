@@ -1,22 +1,23 @@
+<%
+  if ENV['BEAKER_HYPERVISOR']
+    hypervisor = ENV['BEAKER_HYPERVISOR']
+  else
+    hypervisor = 'vagrant'
+  end
+-%>
 HOSTS:
   el7:
     roles:
-      - default
-      - el7
-    platform:   el-7-x86_64
-    box:        centos/7
-    hypervisor: vagrant
-    yum_repos:
-      chef-current:
-        baseurl: 'https://packages.chef.io/repos/yum/current/el/7/$basearch'
-        gpgkeys:
-          - https://packages.chef.io/chef.asc
-      epel:
-        mirrorlist: 'https://mirrors.fedoraproject.org/metalink?repo=epel-7&arch=$basearch'
-        gpgkeys:
-          - https://getfedora.org/static/352C64E5.txt
+      - client
+    platform: el-7-x86_64
+    box: centos/7
+    hypervisor: <%= hypervisor %>
 
 CONFIG:
   log_level: verbose
-  type:      aio
+  synced_folder : disabled
+  type: aio
   vagrant_memsize: 256
+<% if ENV['BEAKER_PUPPET_ENVIRONMENT'] -%>
+  puppet_environment: <%= ENV['BEAKER_PUPPET_ENVIRONMENT'] %>
+<% end -%>

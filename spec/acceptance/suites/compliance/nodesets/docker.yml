@@ -27,4 +27,7 @@ HOSTS:
 
 CONFIG:
   log_level: verbose
-  type:      aio
+  type: aio
+<% if ENV['BEAKER_PUPPET_ENVIRONMENT'] -%>
+  puppet_environment: <%= ENV['BEAKER_PUPPET_ENVIRONMENT'] %>
+<% end -%>
