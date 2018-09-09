@@ -6,14 +6,6 @@ describe 'pam STIG enforcement' do
 
   let(:manifest) {
     <<-EOS
-      $loaded_maps = compliance_markup::loaded_maps()
-      $telemetry = compliance_markup::telemetry("pam::homedir_umask")
-      $full_map = lookup("compliance_markup::debug::dump", { "default_value" => {}})
-
-      notice("compliance_engine loaded_maps => ${loaded_maps}")
-      notice("compliance_engine telemetry => ${telemetry}")
-      notice("compliance_engine dump => ${full_map}")
-
       include 'pam'
 
       $compliance_profile = 'disa_stig'
@@ -23,6 +15,9 @@ describe 'pam STIG enforcement' do
 
   let(:hieradata) { <<-EOF
 ---
+compliance_markup::report_types:
+  - full
+
 compliance_markup::enforcement:
   - disa_stig
   EOF
@@ -57,11 +52,11 @@ compliance_markup::enforcement:
         expect(@compliance_data[:report]['fqdn']).to eq(fqdn)
       end
 
-      it 'should have a compliance profile report' do
+      it 'should have a passing compliance profile report' do
         expect(@compliance_data[:report]['compliance_profiles']).to_not be_empty
         expect(@compliance_data[:report]['compliance_profiles']['disa_stig']).to_not be_empty
         expect(@compliance_data[:report]['compliance_profiles']['disa_stig']['summary']).to_not be_empty
-        expect(@compliance_data[:report]['compliance_profiles']['disa_stig']['summary']['percent_compliant']).to be > 80
+        expect(@compliance_data[:report]['compliance_profiles']['disa_stig']['summary']['percent_compliant']).to be == 100
       end
     end
 
